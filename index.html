@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PortWatcher — Menu-bar port monitor for macOS</title>
+<meta name="description" content="PortWatcher is a tiny macOS menu-bar app that monitors your listening ports, processes, and system resources in real time. Native SwiftUI, zero dependencies, no telemetry." />
+<style>
+  :root{
+    --bg:#0c0e1a; --bg2:#11142a; --card:#161a33; --card2:#1c2142;
+    --text:#eef1ff; --muted:#9aa3c7; --line:#272c4d;
+    --v1:#7C5CFF; --v2:#5B8DF6; --v3:#3FA9F5; --pink:#FF8FB0;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:radial-gradient(1200px 700px at 50% -10%,#1a1f46 0%,var(--bg) 55%);
+    color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);
+    background:rgba(12,14,26,.6);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+  .brand svg{width:30px;height:30px;border-radius:8px}
+  .nav-links{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .btn{padding:9px 16px;border-radius:11px;font-weight:600;font-size:14px;
+    background:linear-gradient(135deg,var(--v1),var(--v3));color:#fff;
+    box-shadow:0 8px 22px rgba(91,141,246,.35);transition:transform .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--text)}
+  /* hero */
+  header{padding:84px 0 56px;text-align:center}
+  .logo-big{width:128px;height:128px;margin:0 auto 26px;filter:drop-shadow(0 18px 40px rgba(91,141,246,.45))}
+  h1{font-size:54px;line-height:1.05;letter-spacing:-1px;font-weight:800;
+     background:linear-gradient(135deg,#fff,#c9d4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:20px;color:var(--muted);margin:18px auto 0;max-width:640px}
+  .cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+  .cta .btn{padding:13px 24px;font-size:15px}
+  /* sections */
+  section{padding:54px 0}
+  .sec-head{text-align:center;margin-bottom:38px}
+  .sec-head h2{font-size:32px;font-weight:800;letter-spacing:-.5px}
+  .sec-head p{color:var(--muted);margin-top:10px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px;transition:transform .15s ease,border-color .15s ease}
+  .card:hover{transform:translateY(-3px);border-color:#3a4170}
+  .card .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--v1),var(--v3));font-size:20px;margin-bottom:14px}
+  .card h3{font-size:17px;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:14px}
+  /* privacy band */
+  .privacy{background:linear-gradient(135deg,rgba(124,92,255,.14),rgba(63,169,245,.12));
+    border:1px solid var(--line);border-radius:24px;padding:34px;text-align:center}
+  .privacy h2{font-size:26px;margin-bottom:10px}
+  .privacy p{color:var(--muted);max-width:680px;margin:0 auto}
+  .pill{display:inline-block;margin:8px 6px 0;padding:6px 13px;border-radius:999px;
+    font-size:13px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#cdd4f5}
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .foot-in a:hover{color:var(--text)}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:40px}.nav-links a:not(.btn){display:none}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <div class="brand">
+    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+          <stop offset="0" stop-color="#7C5CFF"/><stop offset="0.55" stop-color="#5B8DF6"/><stop offset="1" stop-color="#3FA9F5"/>
+        </linearGradient>
+        <linearGradient id="ear" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFC2D4"/><stop offset="1" stop-color="#FF8FB0"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+      <rect x="48" y="48" width="928" height="928" rx="184" fill="#ffffff" opacity="0.07"/>
+      <path d="M370 400 L330 180 L530 340 Z" fill="#ffffff"/>
+      <path d="M654 400 L694 180 L494 340 Z" fill="#ffffff"/>
+      <path d="M395 370 L360 220 L470 345 Z" fill="url(#ear)"/>
+      <path d="M629 370 L664 220 L554 345 Z" fill="url(#ear)"/>
+      <circle cx="512" cy="582" r="245" fill="#ffffff"/>
+      <circle cx="438" cy="560" r="34" fill="#2D2A4A"/><circle cx="586" cy="560" r="34" fill="#2D2A4A"/>
+      <circle cx="449" cy="549" r="11" fill="#ffffff"/><circle cx="597" cy="549" r="11" fill="#ffffff"/>
+      <path d="M512 612 l-20 20 h40 z" fill="#FF7A9C"/>
+      <path d="M474 642 Q512 680 550 642" stroke="#2D2A4A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="404" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/>
+      <circle cx="620" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/>
+      <circle cx="838" cy="560" r="13" fill="#ffffff"/>
+      <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" opacity="0.92">
+        <path d="M862 512 a86 86 0 0 1 0 96"/><path d="M886 484 a124 124 0 0 1 0 152"/>
+      </g>
+    </svg>
+    PortWatcher
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a class="btn" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">Download</a>
+  </div>
+</div></nav>
+
+<header><div class="wrap">
+  <svg class="logo-big" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-label="PortWatcher logo">
+    <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+    <path d="M370 400 L330 180 L530 340 Z" fill="#ffffff"/><path d="M654 400 L694 180 L494 340 Z" fill="#ffffff"/>
+    <path d="M395 370 L360 220 L470 345 Z" fill="url(#ear)"/><path d="M629 370 L664 220 L554 345 Z" fill="url(#ear)"/>
+    <circle cx="512" cy="582" r="245" fill="#ffffff"/>
+    <circle cx="438" cy="560" r="34" fill="#2D2A4A"/><circle cx="586" cy="560" r="34" fill="#2D2A4A"/>
+    <path d="M512 612 l-20 20 h40 z" fill="#FF7A9C"/>
+    <path d="M474 642 Q512 680 550 642" stroke="#2D2A4A" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <circle cx="404" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/><circle cx="620" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/>
+    <circle cx="838" cy="560" r="13" fill="#ffffff"/>
+    <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" opacity="0.92">
+      <path d="M862 512 a86 86 0 0 1 0 96"/><path d="M886 484 a124 124 0 0 1 0 152"/>
+    </g>
+  </svg>
+  <h1>A tiny port monitor<br/>for your menu bar</h1>
+  <p class="tagline">PortWatcher watches your macOS listening ports, processes, and system
+  resources in real time — all from a single popover. Native SwiftUI, zero dependencies.</p>
+  <div class="cta">
+    <a class="btn" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">⬇ Download for macOS</a>
+    <a class="btn ghost" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher">View on GitHub</a>
+  </div>
+</div></header>
+
+<section id="features"><div class="wrap">
+  <div class="sec-head"><h2>What it does</h2><p>Everything lives in the status bar. No windows, no clutter.</p></div>
+  <div class="grid">
+    <div class="card"><div class="ic">🔢</div><h3>Live port count</h3><p>The menu-bar icon shows how many ports are listening right now.</p></div>
+    <div class="card"><div class="ic">📊</div><h3>System resources</h3><p>Memory and disk usage at a glance, colored when they run high.</p></div>
+    <div class="card"><div class="ic">📋</div><h3>Full port list</h3><p>Every TCP/UDP port with process, PID, user, address, and launch source.</p></div>
+    <div class="card"><div class="ic">⚡</div><h3>Change feed</h3><p>Auto-diffed banner: added / restarted / closed, with NEW &amp; memory tags.</p></div>
+    <div class="card"><div class="ic">🔎</div><h3>Filter &amp; search</h3><p>All / Favorites / Local / Auto-launch, plus free-text search.</p></div>
+    <div class="card"><div class="ic">🛠️</div><h3>Restart / stop</h3><p>Kick a launchd job or kill a process, with a confirm dialog and history log.</p></div>
+    <div class="card"><div class="ic">📝</div><h3>Logs on demand</h3><p>One click pulls the real process logs via <code>log show</code>.</p></div>
+    <div class="card"><div class="ic">🌐</div><h3>English / 中文</h3><p>Follows your system language, with a manual switch in Settings.</p></div>
+    <div class="card"><div class="ic">🚀</div><h3>Login item</h3><p>Start at login — just drop the app in /Applications.</p></div>
+  </div>
+</div></section>
+
+<section id="privacy"><div class="wrap">
+  <div class="privacy">
+    <h2>Private by design</h2>
+    <p>PortWatcher reads <strong>only local system state</strong>. It makes
+    <strong>no network connections</strong> and collects <strong>zero data</strong> — nothing ever
+    leaves your Mac. The only outbound action is opening <code>127.0.0.1:&lt;port&gt;</code> in your
+    browser when you ask it to.</p>
+    <div>
+      <span class="pill">No telemetry</span>
+      <span class="pill">No accounts</span>
+      <span class="pill">No network egress</span>
+      <span class="pill">MIT licensed</span>
+      <span class="pill">Native &amp; dependency-free</span>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap foot-in">
+  <div>© 2026 2winter · MIT License</div>
+  <div>
+    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher">GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">Releases</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/blob/main/LICENSE">License</a>
+  </div>
+</div></footer>
+
+</body>
+</html>
