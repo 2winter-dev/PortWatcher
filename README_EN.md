@@ -2,9 +2,9 @@
 
 > 中文说明 / Chinese version: [README.md](README.md)
 
-A tiny menu-bar port monitor for macOS. It lives in your status bar, counts the
-listening ports on your machine, and lets you inspect, restart, or stop the
-process behind any port — all from a single popover.
+A menu-bar port monitor for macOS. It counts the listening ports on your
+machine and lets you inspect, restart, or stop the process behind any port —
+all from a single popover.
 
 Native SwiftUI + AppKit, **zero third-party dependencies**.
 
@@ -14,39 +14,38 @@ Native SwiftUI + AppKit, **zero third-party dependencies**.
 
 - **Live port count in the menu bar** — the status-bar icon shows how many ports
   are currently listening; click it to open the panel.
-- **System resource strip** — real-time **memory usage** (Activity Monitor style:
+- **System resources** — real-time memory usage (Activity Monitor style:
   active + speculative + wired + compressed, excluding reclaimable `inactive`
-  cache) and **disk usage** (`used / total` from `df`). Numbers turn orange/red
+  cache) and disk usage (`used / total` from `df`). Numbers turn orange/red
   when high.
 - **Full port list** — every TCP (`LISTEN`) and UDP (bound) port, each with:
   - port, protocol (TCP/UDP), process name, PID, user
   - listen address, tagged `Local` / `Public` / specific
-  - **launch source**: the `launchd` label + `.plist` path, or the full launch command
-  - **memory footprint** (RSS)
-- **Human-readable change feed** — every scan is diffed and summarized in a banner
-  (e.g. `:8000 added · :5432 restarted · :9000 closed`), with inline `NEW` /
-  `⟳ Restart` / memory `▲▼` tags.
+  - launch source: the `launchd` label + `.plist` path, or the full launch command
+  - memory usage: the process's RSS
+- **Change summary** — each scan is diffed against the previous one and shown in
+  a single banner (e.g. `:8000 added · :5432 restarted · :9000 closed`), with
+  inline `NEW` / `⟳ Restart` / memory `▲▼` tags.
 - **Filter & search** — All / Favorites / Local only / Auto-launch, plus free-text
   search across port, process, and command.
 - **Details & logs** — expand any row for a full info grid, the launch source, the
-  `.plist` contents, and a **one-click fetch of that process's real logs**
+  `.plist` contents, and that process's system logs
   (`log show --predicate processID`). Reveal the executable in Finder, copy the
   command line.
 - **Restart / Force-stop** — restart `launchd`-managed processes via
   `launchctl kickstart -k`; relaunch normal processes with their original command
   (after a 1s port-release wait). Force-stop sends `kill -9` (or
   `launchctl kill SIGKILL` for `launchd` jobs), with a confirm dialog. All actions
-  are written to a **48-hour history log**.
+  are written to a 48-hour history log.
 - **Login item** — register PortWatcher to start at login (recommended: keep the
   app in `/Applications`).
-- **macOS 26 Liquid Glass** look — translucent background, glass cards, semantic
-  colors that follow light/dark mode.
-- **Multilingual** — English / 中文, follows the system, with a manual language
-  switch in Settings. Falls back to English.
+- **macOS 26 Liquid Glass design** — follows light/dark mode automatically.
+- **Multilingual** — English / 中文, follows the system language, with a manual
+  switch in Settings.
 
 ## Preview
 
-> UI preview images (clean mockups rendered from the current feature set, not real screenshots). To use real captures instead, overwrite `app-preview/screenshots/preview-1..3.png`.
+UI preview images (mockups, not real screenshots):
 
 <p align="center">
   <img src="app-preview/screenshots/preview-1.png" width="280" alt="Main panel" />
@@ -112,8 +111,7 @@ bash make-dmg.sh      # package into PortWatcher.dmg
 ## How it works
 
 PortWatcher reads **only local system state**. There is **no network access and no
-telemetry** — the app never sends anything anywhere. It gathers data by shelling
-out to standard macOS utilities:
+telemetry**. It gathers data by shelling out to standard macOS utilities:
 
 | Data            | Source                                  |
 |-----------------|-----------------------------------------|

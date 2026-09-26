@@ -7,30 +7,30 @@
 ## 功能
 
 - **顶部栏实时计数**：菜单栏图标后显示当前监听端口数量，点开弹出面板。
-- **系统资源快捷条**：面板顶部实时显示「系统内存占用比例」（仿 Activity Monitor 口径：active + speculative + wired + compressed，不含可回收的 inactive 缓存）与「硬盘利用率」（已用 / 总量，取自 `df`）。占用过高时数字变橙/红。
+- **系统资源**：面板顶部实时显示内存占用比例（Activity Monitor 口径：active + speculative + wired + compressed，不含可回收的 inactive 缓存）与硬盘利用率（已用 / 总量，取自 `df`）。占用过高时数字变橙/红。
 - **全端口清单**：TCP（LISTEN）＋ UDP（已绑定）全部端口，每行含
   - 端口号、协议（TCP/UDP）、进程名、PID、用户
   - 监听地址（区分 `本地` / `对外` / 特定地址）
-  - **启动源头**：launchd 标签 + plist 路径，或完整启动命令
-  - **内存占用**（RSS）
-- **端口更新（人话版）**：每次扫描自动 diff，顶部一条变更栏
-  （如 `:8000 新增 · :5432 重启 · :9000 关闭`），行内还有 `NEW` / `⟳ 重启` / 内存 `▲▼` 标签。
+  - 启动源头：launchd 标签 + plist 路径，或完整启动命令
+  - 内存占用：进程 RSS
+- **端口变更提示**：每次扫描自动对比上一次结果，顶部变更栏显示有变动的端口
+  （如 `:8000 新增 · :5432 重启 · :9000 关闭`），行内附 `NEW` / `⟳ 重启` / 内存 `▲▼` 标签。
 - **筛选 / 搜索**：全部 / 常用端口 / 仅本地 / 自启动，按端口、进程、命令搜索。
 - **详情与日志**：点开任意行展开
   - 基本信息网格 + 启动源头 + plist 内容
-  - **一键拉取该进程真实日志**（`log show --predicate processID`）
+  - 查看该进程的系统日志（`log show --predicate processID`）
   - 在 Finder 中定位可执行文件、复制命令
 - **重启 / 强制停止**
-  - 重启：launchd 托管进程走 `launchctl kickstart -k`；普通进程 kill 后按原命令原地拉起（带 1s 端口释放等待）。
+  - 重启：launchd 托管进程执行 `launchctl kickstart -k`；普通进程 kill 后按原命令重新启动（等待 1s 端口释放）。
   - 强制停止：`kill -9`（launchd 进程走 `launchctl kill SIGKILL`），带二次确认。
-  - 操作写入**历史（仅保留近 48 小时，持久化到 ~/Library/Application Support/PortWatcher）**。
-- **登录时启动（开机自动运行）**：建议把 `PortWatcher.app` 放到 `/Applications`，否则系统可能拒绝注册登录项。
-- **macOS 26 Liquid Glass 风格**：毛玻璃背景 + 玻璃卡片 + 圆角留白，自动跟随亮/暗色。
-- **多语言**：默认英文界面，内置中文，跟随系统语言，可在「设置」里手动切换；兜底为英文。
+  - 操作写入历史（仅保留近 48 小时，持久化到 ~/Library/Application Support/PortWatcher）。
+- **登录时启动**：建议把 `PortWatcher.app` 放到 `/Applications`，否则系统可能拒绝注册登录项。
+- **macOS 26 Liquid Glass 设计**：自动跟随亮/暗色外观。
+- **多语言**：默认英文界面，内置中文，跟随系统语言，也可在「设置」中手动切换。
 
 ## 预览
 
-> 下方为应用界面预览图（按当前功能重制的干净示意图，非真机截图）。如需替换为真实截图，用新图直接覆盖 `app-preview/screenshots/preview-1..3.png` 即可。
+以下为应用界面示意图（非真机截图）。
 
 <p align="center">
   <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板总览" />
@@ -94,7 +94,7 @@ bash make-dmg.sh      # 打包成 PortWatcher.dmg
 
 ## 工作原理
 
-PortWatcher **只读取本机系统状态**，不做任何网络访问、没有任何遥测——不会把任何数据发往任何地方。它通过调用标准 macOS 工具获取信息：
+PortWatcher 只读取本机系统状态，不访问网络，也没有任何遥测。它通过调用标准 macOS 工具获取信息：
 
 | 数据 | 来源 |
 |------|------|
