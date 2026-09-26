@@ -28,9 +28,19 @@
 - **macOS 26 Liquid Glass 风格**：毛玻璃背景 + 玻璃卡片 + 圆角留白，自动跟随亮/暗色。
 - **多语言**：默认英文界面，内置中文，跟随系统语言，可在「设置」里手动切换；兜底为英文。
 
+## 预览
+
+> 下方为应用界面预览图（按当前功能重制的干净示意图，非真机截图）。如需替换为真实截图，用新图直接覆盖 `app-preview/screenshots/preview-1..3.png` 即可。
+
+<p align="center">
+  <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板总览" />
+  <img src="app-preview/screenshots/preview-2.png" width="280" alt="设置与常用" />
+  <img src="app-preview/screenshots/preview-3.png" width="280" alt="端口详情与日志" />
+</p>
+
 ## 安装
 
-从 [Releases](https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases) 下载最新的 `PortWatcher.dmg`，打开后把 **PortWatcher.app** 拖进「应用程序」即可。
+从 [Releases](https://github.com/2winter-dev/PortWatcher/releases) 下载最新的 `PortWatcher.dmg`，打开后把 **PortWatcher.app** 拖进「应用程序」即可。
 
 > 需要 **macOS 26** 及以上。
 
@@ -42,7 +52,7 @@
 - **本地跑起来**：
 
   ```bash
-  git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+  git clone https://github.com/2winter-dev/PortWatcher.git
   cd PortWatcher
   bash build-app.sh
   open build/PortWatcher.app
@@ -57,7 +67,7 @@
 前提：**Xcode 26 / Swift 6**（命令行工具即可）。
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+git clone https://github.com/2winter-dev/PortWatcher.git
 cd PortWatcher
 bash build-app.sh
 open build/PortWatcher.app

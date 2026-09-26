@@ -7,8 +7,7 @@ PortWatcher.dmg
 # SwiftPM
 .swiftpm/
 
-# Simulated App Store screenshots (large, not needed for the OSS repo)
-app-preview/screenshots/
+# App preview screenshots ARE tracked (app-preview/screenshots/*.png)
 
 # OS / editor noise
 .DS_Store

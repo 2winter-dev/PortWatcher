@@ -44,10 +44,20 @@ Native SwiftUI + AppKit, **zero third-party dependencies**.
 - **Multilingual** — English / 中文, follows the system, with a manual language
   switch in Settings. Falls back to English.
 
+## Preview
+
+> UI preview images (clean mockups rendered from the current feature set, not real screenshots). To use real captures instead, overwrite `app-preview/screenshots/preview-1..3.png`.
+
+<p align="center">
+  <img src="app-preview/screenshots/preview-1.png" width="280" alt="Main panel" />
+  <img src="app-preview/screenshots/preview-2.png" width="280" alt="Settings & favorites" />
+  <img src="app-preview/screenshots/preview-3.png" width="280" alt="Port detail & log" />
+</p>
+
 ## Installation
 
 Download the latest `PortWatcher.dmg` from the
-[Releases](https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases) page,
+[Releases](https://github.com/2winter-dev/PortWatcher/releases) page,
 open it, and drag **PortWatcher.app** to **Applications**.
 
 > Requires **macOS 26** or later.
@@ -59,7 +69,7 @@ This repo is a SwiftPM project (`Package.swift`); no Xcode project file is requi
 - **Prerequisites**: Xcode 26 / Swift 6 Command Line Tools.
 - **Run it locally**:
   ```bash
-  git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+  git clone https://github.com/2winter-dev/PortWatcher.git
   cd PortWatcher
   bash build-app.sh
   open build/PortWatcher.app
@@ -73,7 +83,7 @@ This repo is a SwiftPM project (`Package.swift`); no Xcode project file is requi
 Prerequisites: **Xcode 26 / Swift 6** (the Command Line Tools are enough).
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+git clone https://github.com/2winter-dev/PortWatcher.git
 cd PortWatcher
 bash build-app.sh
 open build/PortWatcher.app
