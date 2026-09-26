@@ -30,8 +30,6 @@
 
 ## 预览
 
-以下为应用界面示意图（非真机截图）。
-
 <p align="center">
   <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板总览" />
   <img src="app-preview/screenshots/preview-2.png" width="280" alt="设置与常用" />

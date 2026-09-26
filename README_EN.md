@@ -45,8 +45,6 @@ Native SwiftUI + AppKit, **zero third-party dependencies**.
 
 ## Preview
 
-UI preview images (mockups, not real screenshots):
-
 <p align="center">
   <img src="app-preview/screenshots/preview-1.png" width="280" alt="Main panel" />
   <img src="app-preview/screenshots/preview-2.png" width="280" alt="Settings & favorites" />
