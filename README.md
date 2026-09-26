@@ -31,7 +31,7 @@
 ## 预览
 
 <p align="center">
-  <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板" />
+  <img src="app-preview/screenshots/preview-1.png" width="420" alt="主面板" />
 </p>
 
 ## 安装

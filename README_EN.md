@@ -46,7 +46,7 @@ Native SwiftUI + AppKit, **zero third-party dependencies**.
 ## Preview
 
 <p align="center">
-  <img src="app-preview/screenshots/preview-1.png" width="280" alt="Main panel" />
+  <img src="app-preview/screenshots/preview-1.png" width="420" alt="Main panel" />
 </p>
 
 ## Installation
