@@ -97,10 +97,6 @@ out to standard macOS utilities:
 | Process logs    | `log show`                              |
 | Memory / disk   | `vm_stat`, `sysctl`, `df`               |
 
-Because it inspects **other processes'** sockets and processes, PortWatcher runs
-**without the App Sandbox**. This is why it is distributed directly (Developer ID
-+ notarization) rather than through the Mac App Store, which mandates the sandbox.
-
 ## Privacy
 
 PortWatcher collects **no data** and makes **no network connections** (the only

@@ -80,10 +80,6 @@ PortWatcher **只读取本机系统状态**，不做任何网络访问、没有�
 
 PortWatcher **不收集任何数据、不进行任何网络请求**。唯一的对外动作，是你在点「浏览器打开」时打开本机的 `http://127.0.0.1:<端口>`。所有信息都留在你的 Mac 上。
 
-## 为什么没有上架 Mac App Store
-
-因为要读取**其他进程**的端口与进程信息，PortWatcher 运行在**未开启 App Sandbox** 的状态下。而 Mac App Store **强制要求沙箱**，沙箱会禁止读取其他进程的 socket/进程（临时例外 entitlement 在 App Store 渠道也不被接受）。因此它通过 **Developer ID 签名 + 公证**直接分发，而不是走 App Store。
-
 ## 项目结构
 
 ```
