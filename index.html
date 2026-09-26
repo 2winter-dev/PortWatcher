@@ -66,6 +66,12 @@
   footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
   .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
   .foot-in a:hover{color:var(--text)}
+  /* preview shots */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:10px}
+  .shot{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .15s ease,border-color .15s ease}
+  .shot:hover{transform:translateY(-3px);border-color:#3a4170}
+  .shot img{width:100%;display:block}
+  @media(max-width:760px){.shots{grid-template-columns:1fr}}
   @media(max-width:760px){.grid{grid-template-columns:1fr}h1{font-size:40px}.nav-links a:not(.btn){display:none}}
 </style>
 </head>
@@ -105,7 +111,7 @@
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
-    <a class="btn" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">Download</a>
+    <a class="btn" href="https://github.com/2winter-dev/PortWatcher/releases">Download</a>
   </div>
 </div></nav>
 
@@ -128,10 +134,19 @@
   <p class="tagline">PortWatcher watches your macOS listening ports, processes, and system
   resources in real time — all from a single popover. Native SwiftUI, zero dependencies.</p>
   <div class="cta">
-    <a class="btn" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">⬇ Download for macOS</a>
-    <a class="btn ghost" href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher">View on GitHub</a>
+    <a class="btn" href="https://github.com/2winter-dev/PortWatcher/releases">⬇ Download for macOS</a>
+    <a class="btn ghost" href="https://github.com/2winter-dev/PortWatcher">View on GitHub</a>
   </div>
 </div></header>
+
+<section id="preview"><div class="wrap">
+  <div class="sec-head"><h2>Take a look</h2><p>The menu-bar popover, settings, and a port detail — live.</p></div>
+  <div class="shots">
+    <div class="shot"><img src="assets/preview-1.png" alt="Main panel overview"/></div>
+    <div class="shot"><img src="assets/preview-2.png" alt="Settings and favorites"/></div>
+    <div class="shot"><img src="assets/preview-3.png" alt="Port detail and logs"/></div>
+  </div>
+</div></section>
 
 <section id="features"><div class="wrap">
   <div class="sec-head"><h2>What it does</h2><p>Everything lives in the status bar. No windows, no clutter.</p></div>
@@ -168,11 +183,11 @@
 <footer><div class="wrap foot-in">
   <div>© 2026 2winter · MIT License</div>
   <div>
-    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher">GitHub</a>
+    <a href="https://github.com/2winter-dev/PortWatcher">GitHub</a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/releases">Releases</a>
+    <a href="https://github.com/2winter-dev/PortWatcher/releases">Releases</a>
     &nbsp;·&nbsp;
-    <a href="https://github.com/YOUR_GITHUB_USERNAME/PortWatcher/blob/main/LICENSE">License</a>
+    <a href="https://github.com/2winter-dev/PortWatcher/blob/main/LICENSE">License</a>
   </div>
 </div></footer>
 
