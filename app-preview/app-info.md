@@ -1,4 +1,4 @@
-# PortWatcher — Mac App Store 上架物料
+# PortWatcher — 应用资料
 
 > 作者：2winter ｜ Bundle ID：`com.bbcat.PortWatcher` ｜ 版本 1.0
 

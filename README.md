@@ -34,7 +34,25 @@
 
 > 需要 **macOS 26** 及以上。
 
-## 构建（从源码）
+## 开发
+
+本仓库是 SwiftPM 工程（`Package.swift`），无需 Xcode 项目文件即可完整构建。
+
+- **前提**：Xcode 26 / Swift 6 命令行工具。
+- **本地跑起来**：
+
+  ```bash
+  git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+  cd PortWatcher
+  bash build-app.sh
+  open build/PortWatcher.app
+  ```
+
+- **用 Xcode 调试**：`open Package.swift` 即可在 Xcode 里运行 / 断点调试（菜单栏 app 请在 Xcode 的 My Mac 目标下运行）。
+- **改图标 / 顶栏图**：源文件在 `app-preview/icon/master.svg` 与 `app-preview/menubar/template.svg`，用 `app-preview/render.cjs`（`@resvg/resvg-js`）渲染 PNG，`.icns` 用 `iconutil` 合成；仓库已带预渲染产物，重渲染后重跑 `build-app.sh` 即可生效。
+- **源码布局**：见下方「项目结构」。
+
+## 构建与发布
 
 前提：**Xcode 26 / Swift 6**（命令行工具即可）。
 
@@ -93,7 +111,7 @@ Sources/PortWatcher/
   HistoryStore.swift   48 小时操作历史（持久化到 ~/Library）
   Localization.swift   en/zh 翻译表 + 语言切换
   main.swift           NSApplication 入口
-AppStore/             图标与顶栏 SVG 源文件、渲染脚本、商店文案
+app-preview/          图标与顶栏 SVG 源文件、渲染脚本、应用资料
 build-app.sh          装配 .app
 notarize.sh           Developer ID 签名 + 公证
 make-dmg.sh           打包成 .dmg

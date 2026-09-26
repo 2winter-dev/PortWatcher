@@ -14,11 +14,11 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 cp "$BIN" "$APP/Contents/MacOS/PortWatcher"
 
-# App 图标 + 顶栏模板图（由 AppStore/ 下的 SVG 渲染产出）
-ICNS="AppStore/icon/PortWatcher.icns"
-MENUBAR="AppStore/menubar/template.png"
-test -f "$ICNS" || { echo "缺少 $ICNS，先按 AppStore/README 说明渲染"; exit 1; }
-test -f "$MENUBAR" || { echo "缺少 $MENUBAR，先按 AppStore/README 说明渲染"; exit 1; }
+# App 图标 + 顶栏模板图（由 app-preview/ 下的 SVG 渲染产出）
+ICNS="app-preview/icon/PortWatcher.icns"
+MENUBAR="app-preview/menubar/template.png"
+test -f "$ICNS" || { echo "缺少 $ICNS，先按 app-preview/app-info.md 说明渲染"; exit 1; }
+test -f "$MENUBAR" || { echo "缺少 $MENUBAR，先按 app-preview/app-info.md 说明渲染"; exit 1; }
 cp "$ICNS" "$APP/Contents/Resources/PortWatcher.icns"
 cp "$MENUBAR" "$APP/Contents/Resources/menubar.png"
 

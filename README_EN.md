@@ -52,7 +52,23 @@ open it, and drag **PortWatcher.app** to **Applications**.
 
 > Requires **macOS 26** or later.
 
-## Build from source
+## Development
+
+This repo is a SwiftPM project (`Package.swift`); no Xcode project file is required to build.
+
+- **Prerequisites**: Xcode 26 / Swift 6 Command Line Tools.
+- **Run it locally**:
+  ```bash
+  git clone https://github.com/YOUR_GITHUB_USERNAME/PortWatcher.git
+  cd PortWatcher
+  bash build-app.sh
+  open build/PortWatcher.app
+  ```
+- **Debug in Xcode**: `open Package.swift` to run / set breakpoints (run the menu-bar app under the My Mac target in Xcode).
+- **Edit the icon / menu-bar glyph**: sources live at `app-preview/icon/master.svg` and `app-preview/menubar/template.svg`; render PNGs with `app-preview/render.cjs` (`@resvg/resvg-js`), and compose the `.icns` with `iconutil`. Pre-rendered assets are committed; re-run `build-app.sh` after re-rendering.
+- **Source layout**: see "Project structure" below.
+
+## Build & release
 
 Prerequisites: **Xcode 26 / Swift 6** (the Command Line Tools are enough).
 
@@ -116,7 +132,7 @@ Sources/PortWatcher/
   HistoryStore.swift    48-hour action history (persisted to ~/Library)
   Localization.swift    en/zh string table + language switching
   main.swift            NSApplication entry point
-AppStore/               icon + menu-bar SVG sources, render script, store metadata
+app-preview/            icon + menu-bar SVG sources, render script, app info
 build-app.sh           assemble the .app
 notarize.sh            Developer ID sign + notarize
 make-dmg.sh            package into a .dmg
