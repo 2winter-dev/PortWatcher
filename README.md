@@ -31,9 +31,7 @@
 ## 预览
 
 <p align="center">
-  <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板总览" />
-  <img src="app-preview/screenshots/preview-2.png" width="280" alt="设置与常用" />
-  <img src="app-preview/screenshots/preview-3.png" width="280" alt="端口详情与日志" />
+  <img src="app-preview/screenshots/preview-1.png" width="280" alt="主面板" />
 </p>
 
 ## 安装

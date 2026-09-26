@@ -47,8 +47,6 @@ Native SwiftUI + AppKit, **zero third-party dependencies**.
 
 <p align="center">
   <img src="app-preview/screenshots/preview-1.png" width="280" alt="Main panel" />
-  <img src="app-preview/screenshots/preview-2.png" width="280" alt="Settings & favorites" />
-  <img src="app-preview/screenshots/preview-3.png" width="280" alt="Port detail & log" />
 </p>
 
 ## Installation
