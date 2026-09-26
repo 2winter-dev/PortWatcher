@@ -1,0 +1,24 @@
+# Build artifacts
+.build/
+build/
+PortWatcher.dmg
+*.app
+
+# SwiftPM
+.swiftpm/
+
+# Simulated App Store screenshots (large, not needed for the OSS repo)
+AppStore/screenshots/
+
+# OS / editor noise
+.DS_Store
+*.swp
+*.swo
+
+# Secrets (defensive — should never be committed)
+*.pem
+*.p12
+*.key
+*.cer
+.env
+.env.*

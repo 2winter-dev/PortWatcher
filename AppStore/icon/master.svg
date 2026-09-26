@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#7C5CFF"/>
+      <stop offset="0.55" stop-color="#5B8DF6"/>
+      <stop offset="1" stop-color="#3FA9F5"/>
+    </linearGradient>
+    <linearGradient id="ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFC2D4"/>
+      <stop offset="1" stop-color="#FF8FB0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background squircle -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <rect x="48" y="48" width="928" height="928" rx="184" fill="#ffffff" opacity="0.07"/>
+
+  <!-- cat ears (short & wide, sitting on the upper-left / upper-right of the head) -->
+  <path d="M370 400 L330 180 L530 340 Z" fill="#ffffff"/>
+  <path d="M654 400 L694 180 L494 340 Z" fill="#ffffff"/>
+  <path d="M395 370 L360 220 L470 345 Z" fill="url(#ear)"/>
+  <path d="M629 370 L664 220 L554 345 Z" fill="url(#ear)"/>
+
+  <!-- face -->
+  <circle cx="512" cy="582" r="245" fill="#ffffff"/>
+
+  <!-- eyes -->
+  <circle cx="438" cy="560" r="34" fill="#2D2A4A"/>
+  <circle cx="586" cy="560" r="34" fill="#2D2A4A"/>
+  <circle cx="449" cy="549" r="11" fill="#ffffff"/>
+  <circle cx="597" cy="549" r="11" fill="#ffffff"/>
+
+  <!-- nose + mouth -->
+  <path d="M512 612 l-20 20 h40 z" fill="#FF7A9C"/>
+  <path d="M474 642 Q512 680 550 642" stroke="#2D2A4A" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+  <!-- cheeks -->
+  <circle cx="404" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/>
+  <circle cx="620" cy="632" r="24" fill="#FFB3C8" opacity="0.65"/>
+
+  <!-- network signal (right) -->
+  <circle cx="838" cy="560" r="13" fill="#ffffff"/>
+  <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" opacity="0.92">
+    <path d="M862 512 a86 86 0 0 1 0 96"/>
+    <path d="M886 484 a124 124 0 0 1 0 152"/>
+  </g>
+</svg>

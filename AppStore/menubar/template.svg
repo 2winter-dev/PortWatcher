@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- minimal "port signal" mark: node dot + two broadcast arcs -->
+  <circle cx="7" cy="17" r="2.4" fill="#000000"/>
+  <g fill="none" stroke="#000000" stroke-width="2.3" stroke-linecap="round">
+    <path d="M7 11.6 A5.4 5.4 0 0 1 12.4 17"/>
+    <path d="M7 6.4 A10.6 10.6 0 0 1 17.6 17"/>
+  </g>
+</svg>
